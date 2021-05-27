@@ -7,7 +7,39 @@
 
 <body>
   <script>
+    function breathe(amount) {
+      return new Promise((res, rej) => {
+        if (amount < 500)
+          rej(`That's too small for a breath 🥀`)
+        setTimeout(() => res(`Done for ${amount} ms`), amount);
+      });
+    }
+    function catchErrors(fn) {
+      return function (...args) {
+        return fn(...args).catch((err) => {
+          console.error(err)
+        });
+      }
+    }
+    async function go(name, last) {
+      try {
+        console.log(`starting for ${name} ${last}`);
+        const res1 = await breathe(550);
+        console.log(res1);
+        const res2 = await breathe(500);
+        console.log(res2);
+        const res3 = await breathe(100);
+        console.log(res3);
+        console.log('end');
+      } catch (err) {
+        console.error('OHOOOOOO NOO!!!!');
+        console.error(err);
+      }
+    }
 
+    const wrappedFunction = catchErrors(go);
+
+    wrappedFunction('abc', 'xyz');
   </script>
 </body>
 

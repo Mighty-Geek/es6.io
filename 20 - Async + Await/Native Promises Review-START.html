@@ -9,7 +9,24 @@
 
 <body>
   <script>
+    // fetch('api.gihub.com/users/mighty-geek').then(res => {
+    //   return res.json();
+    // })
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    //   .catch(err => {
+    //     console.error('Ohh nooo');
+    //     console.error(err);
+    //   })
 
+    const video = document.querySelector('.handsome');
+
+    navigator.mediaDevices.getUserMedia({ video: true }).then(mediaStream => {
+      video.srcObject = mediaStream;
+      video.load();
+      video.play();
+    })
   </script>
 </body>
 
